@@ -10,7 +10,6 @@
 
 #pragma once
 
-#define PRI_NUM				((unsigned int)15)
 #define EVENT_STACK_SIZE	((unsigned int)8)
 
 

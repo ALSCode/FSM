@@ -18,7 +18,7 @@
   */
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
-#include <State_Machine.hpp>
+
 #include "main.h"
 #include "eth.h"
 #include "usart.h"
@@ -27,7 +27,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include "scope_guard.hpp"
+#include "state_machine.hpp"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/

@@ -50,14 +50,7 @@ struct type_pack{
 //Создаем алиас для пустого списка:
 using empty_pack = type_pack<>;
 
-//using user_pack = type_pack<char, int, double>;
-//
-//template <class TP>
-//struct check{
-//	using tp = TP;
-//};
-//
-//static_assert(check<user_pack>::tp::foo() == 1);
+
 
 //Функция, возвращающая размер списка:
 template <class... Ts>

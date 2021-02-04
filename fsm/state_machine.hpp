@@ -52,15 +52,16 @@ public:
 		for (uint32_t i = 0; i != events.size(); ++i){
 
 			auto v = events.front();
-
-			std::visit([&](const auto& arg){
+			auto l = [&](const auto& arg){
 
 				using event_t =  std::decay_t<decltype(arg)>;
 				k.event_idx = event_t::idx;
 
 				it = transitions.find(k);
 
-			}, v);
+			};
+
+			std::visit(l, v);
 
 
 			if ( it != transitions.end() ){
@@ -81,11 +82,11 @@ public:
 	}
 
 	template <typename... Args>
-	void state_action (Args... args){
+	void state_action (const Args&... args){
 
 		state_v temp_v{current_state};
 
-		std::visit([&](const auto& arg) {
+		auto l = [&](const auto& arg) {
 
 			using state_t =  std::decay_t<decltype(arg)>;
 			using functor_t = typename state_t::action_t;
@@ -94,8 +95,9 @@ public:
 
 				functor_t{}(args...);
 			}
+		};
 
-		}, temp_v);
+		std::visit(l, temp_v);
 	}
 
 	template <typename Event,
@@ -120,10 +122,15 @@ public:
 		on_event_impl(k);
 	}
 
+	void set_guard (const Guard& g){
+		guard = g;
+	}
+
 private:
 
 	template <class... Ts>
 	void set (type_pack<Ts...>){
+
 		(set_impl(just_type<Ts>{}), ...);
 	};
 
@@ -161,7 +168,7 @@ private:
 		Guard &ref_g = guard;
 		state_v &ref_state = current_state;
 
-		std::visit([&](const auto& arg) {
+		auto l = [&](const auto& arg) {
 
 			using tr_t =  std::decay_t<decltype(arg)>;
 			using functor_t = typename tr_t::action_t;
@@ -175,7 +182,9 @@ private:
 
 				functor_t{}();
 			}
-		}, tr_var);
+		};
+
+		std::visit(l, tr_var);
 	}
 
 	using map_type =

@@ -27,14 +27,14 @@ struct KeyEqual{
 	}
 };
 
-struct KeyComp{
-	constexpr bool operator() (const Key& lhs, const Key& rhs) const{
-		auto left = std::make_pair(lhs.state_idx, lhs.event_idx);
-		auto right = std::make_pair(rhs.state_idx, rhs.event_idx);
-
-		return left > right;
-	}
-};
+//struct KeyComp{
+//	constexpr bool operator() (const Key& lhs, const Key& rhs) const{
+//		auto left = std::make_pair(lhs.state_idx, lhs.event_idx);
+//		auto right = std::make_pair(rhs.state_idx, rhs.event_idx);
+//
+//		return left > right;
+//	}
+//};
 
 struct KeyHash{
 	std::size_t operator()(const Key& k) const

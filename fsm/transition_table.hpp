@@ -9,7 +9,7 @@
 #define TRANSITION_TABLE_HPP_
 
 #pragma once
-
+#include <variant>
 #include "transition.hpp"
 
 namespace th{
@@ -121,6 +121,6 @@ struct TransitionTable : TransitionTableBase{
 
 /*--START STATIC TEST--*/
 
-/*--STOP STATIC TEST--*/
+/*--END STATIC TEST--*/
 
 #endif /* TRANSITION_TABLE_HPP_ */
